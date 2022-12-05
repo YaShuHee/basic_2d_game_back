@@ -55,6 +55,6 @@ class TestMap(unittest.TestCase):
 
     @parameterized.expand(load_width_and_height_int_values())
     def test_width_and_height_attributes_return_accurate_values(self, expected_width, expected_height):
-        entity = Map(expected_width, expected_height)
+        map = Map(expected_width, expected_height)
         self.assertEqual(map.width, expected_width)
-        self.assertEqual(map.hight, expected_height)
+        self.assertEqual(map.height, expected_height)
