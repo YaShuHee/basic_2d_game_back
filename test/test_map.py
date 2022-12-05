@@ -44,3 +44,17 @@ class TestMap(unittest.TestCase):
     def test_map_initialisation_raises_value_error_when_passed_width_or_height_is_lower_than_one(self, width, height):
         with self.assertRaises(ValueError):
             map = Map(width, height)
+
+    def load_width_and_height_int_values():
+        return (
+            (1, 1),
+            (1, 100),
+            (100, 1),
+            (20, 20),
+        )
+
+    @parameterized.expand(load_width_and_height_int_values())
+    def test_width_and_height_attributes_return_accurate_values(self, expected_width, expected_height):
+        entity = Map(expected_width, expected_height)
+        self.assertEqual(map.width, expected_width)
+        self.assertEqual(map.hight, expected_height)
