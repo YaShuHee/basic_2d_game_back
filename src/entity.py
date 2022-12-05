@@ -5,7 +5,7 @@ class Entity(object):
         An entity has an "x" and a "y" coordinates.
         """
         if not(isinstance(x, int) and isinstance(y, int)):
-            raise(TypeError)
+            raise TypeError("x and y must be int")
         self._x = x
         self._y = y
 
@@ -16,3 +16,6 @@ class Entity(object):
     @property
     def y(self):
         return self._y
+
+    def move_to(self, x, y):
+        pass
