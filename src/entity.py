@@ -18,4 +18,7 @@ class Entity(object):
         return self._y
 
     def move_to(self, x, y):
-        pass
+        if not(isinstance(x, int) and isinstance(y, int)):
+            raise TypeError("x and y must be int")
+        self._x = x
+        self._y = y
