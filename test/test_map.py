@@ -45,6 +45,7 @@ class TestMap(unittest.TestCase):
         with self.assertRaises(ValueError):
             map = Map(width, height)
 
+    @staticmethod
     def load_width_and_height_int_values():
         return (
             (1, 1),
@@ -58,3 +59,53 @@ class TestMap(unittest.TestCase):
         map = Map(expected_width, expected_height)
         self.assertEqual(map.width, expected_width)
         self.assertEqual(map.height, expected_height)
+
+    @staticmethod
+    def load_width_height_x_y_int_values():
+        return (
+            (1, 1, 1, 1),
+            (10, 10, 1, 1),
+            (10, 10, 4, 2),
+            (10, 10, 10, 10),
+        )
+
+    @parameterized.expand(load_width_height_x_y_int_values)
+    def test_add_entity_at_with_accurate_int_values(self, width, height, x, y):
+        map = Map(width, height)
+        entity_id = map.add_entity_at(x, y)
+        self.assertEqual(map._entities[entity_id].x, x)
+        self.assertEqual(map._entities[entity_id].y, y)
+
+    @staticmethod
+    def load_x_y_from_wrong_type():
+        return (
+            ("1", "1"),
+            (1, "1"),
+            ("1", 1),
+            (1., 1.),
+            (1., 1),
+            (1, 1.),
+            ("1", 1.),
+            (1., "1"),
+        )
+
+    @parameterized.expand(load_x_y_from_wrong_type())
+    def test_add_entity_at_when_passed_x_or_y_are_from_wrong_type(self, x, y):
+        width = 1
+        height = 1
+        map = Map(width, height)
+        with self.assertRaises(TypeError):
+            map.add_entity_at(x, y)
+
+    @staticmethod
+    def load_width_height_x_y_not_on_the_map():
+        return (
+            (1, 1, 2, 2),
+            (1, 1, -1, -1),
+            (1, 99, 2, 100),
+        )
+
+    def test_add_entity_at_when_passed_x_or_y_are_not_on_map(self, width, height, x, y):
+        map = Map(width, height)
+        with self.assertRaises(ValueError):
+            map.add_entity_at(x, y)

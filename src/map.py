@@ -17,3 +17,6 @@ class Map(object):
     @property
     def height(self):
         return self._height
+
+    def add_entity_at(self, x: int, y: int):
+        pass
