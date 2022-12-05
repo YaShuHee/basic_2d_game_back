@@ -105,6 +105,7 @@ class TestMap(unittest.TestCase):
             (1, 99, 2, 100),
         )
 
+    @parameterized.expand(load_width_height_x_y_not_on_the_map())
     def test_add_entity_at_when_passed_x_or_y_are_not_on_map(self, width, height, x, y):
         map = Map(width, height)
         with self.assertRaises(ValueError):
