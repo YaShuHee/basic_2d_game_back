@@ -1,5 +1,5 @@
 class Entity(object):
-    def __init__(self, x, y) -> None:
+    def __init__(self, x: int, y: int) -> None:
         """
         The basic object that will be on the 2D game map.
         An entity has an "x" and a "y" coordinates.
